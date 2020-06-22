@@ -23,6 +23,7 @@ textarea{
 
 .description{
   white-space: pre-wrap;
+  text-align: center center;
 }
 
 .time-block{
@@ -40,7 +41,9 @@ textarea{
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  align-content: center;
 }
+
 
 .past {
   background-color: #d3d3d3;
