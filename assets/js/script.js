@@ -7,10 +7,10 @@ $('#currentDay').append(now);
 var i;
 
 for(i=9; i< 18; i++){
-    var temp = ".row-" + i;
+    var timeslot = ".row-" + i;
     var hr = moment(i, "HH");
 
-    $(temp).append(hr.format('h:mm'));
+    $(timeslot).append(hr.format('h:mm'));
 
     var delta = hr.diff(moment().startOf('hour'));
     var row = "#row-" + i;
@@ -24,3 +24,17 @@ for(i=9; i< 18; i++){
         $(row).addClass("present")
     }
 }
+
+// On click edit activity text
+$(".activity").on("click", "p", function() {
+    // get current text
+    var text = $(this)
+        .text()
+        .trim();
+    console.log(text)
+    // create a new text area to replace this
+    var textInput = $("<textarea>")
+        .addClass("form-control")
+        .val(text);
+    $(this).replaceWith(textInput);
+  });
