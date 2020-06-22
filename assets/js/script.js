@@ -1,3 +1,5 @@
+var tasks = {};
+
 // Display today's date
 var now = moment().format('MMMM Do YYYY, h:mm:ss a');
 console.log(now);
@@ -31,7 +33,6 @@ $(".activity").on("click", "p", function() {
     var text = $(this)
         .text()
         .trim();
-    console.log(text)
     // create a new text area to replace this
     var textInput = $("<textarea>")
         .addClass("form-control")
@@ -39,12 +40,30 @@ $(".activity").on("click", "p", function() {
     $(this).replaceWith(textInput);
   });
 
+var loadTasks = function() {
+    // if localStorage empty assign hour and text key value pairs to tasks
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+    if (!tasks) {
+        tasks = {
+            hr: "",
+            txt: ""
+        };
+    }
+    // Populate existing time slots
+}
+
+var saveTasks = function() {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+}
+
 // On click save button to save to local storage
 $(".saveBtn").on("click", function() {
     var temp = $(".activity").children("textarea").val();
-    console.log(temp);
     var para = $("<p>")
         .text(temp)
-    console.log(para)
     $(".activity").children("textarea").replaceWith(para);
+    saveTasks();
+
 });
+
+loadTasks();
