@@ -38,3 +38,13 @@ $(".activity").on("click", "p", function() {
         .val(text);
     $(this).replaceWith(textInput);
   });
+
+// On click save button to save to local storage
+$(".saveBtn").on("click", function() {
+    var temp = $(".activity").children("textarea").val();
+    console.log(temp);
+    var para = $("<p>")
+        .text(temp)
+    console.log(para)
+    $(".activity").children("textarea").replaceWith(para);
+});
