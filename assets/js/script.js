@@ -45,7 +45,7 @@ var loadTasks = function() {
     tasks = JSON.parse(localStorage.getItem("tasks"));
     if (!tasks) {
         tasks = {
-            hr: "",
+            row: "",
             txt: ""
         };
     }
@@ -62,6 +62,10 @@ $(".saveBtn").on("click", function() {
     var para = $("<p>")
         .text(temp)
     $(".activity").children("textarea").replaceWith(para);
+    tasks.row = $(this).parent().parent().attr('id');
+    console.log(tasks.row);
+    tasks.txt = temp;
+    console.log(tasks.txt);
     saveTasks();
 
 });
