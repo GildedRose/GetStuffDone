@@ -2,7 +2,6 @@ var tasks = {};
 
 // Display today's date
 var now = moment().format('MMMM Do YYYY, h:mm:ss a');
-console.log(now);
 $('#currentDay').append(now);
 
 //time loop
@@ -45,11 +44,24 @@ var loadTasks = function() {
     tasks = JSON.parse(localStorage.getItem("tasks"));
     if (!tasks) {
         tasks = {
-            row: "",
-            txt: ""
+            "row-9": "Activity",
+            "row-10": "Activity",
+            "row-11": "Activity",
+            "row-12": "Activity",
+            "row-13": "Activity",
+            "row-14": "Activity",
+            "row-15": "Acitvity",
+            "row-16": "Activity",
+            "row-17": "Acitvity"
         };
     }
     // Populate existing time slots
+    var i;
+
+    for(i=9; i<18; i++){
+        var roWords = tasks["row-" + i]
+        $("#tsk-" + i).children("p").text(roWords);
+    }
 }
 
 var saveTasks = function() {
@@ -62,10 +74,8 @@ $(".saveBtn").on("click", function() {
     var para = $("<p>")
         .text(temp)
     $(".activity").children("textarea").replaceWith(para);
-    tasks.row = $(this).parent().parent().attr('id');
-    console.log(tasks.row);
-    tasks.txt = temp;
-    console.log(tasks.txt);
+    var rowId = $(this).parent().parent().attr('id');
+    tasks[rowId]= temp;
     saveTasks();
 
 });
